@@ -43,6 +43,11 @@ export class FeeTypeComponent implements OnInit {
       this.dataSource = new MatTableDataSource < Element > (res.data);
     })
   }
+  selectSubject(data){
+    this.web.setfeeType(data);
+    this.Route.navigate(['Academics/fee'])
+
+   }
    addUser(){
     let dialogRef = this.dialog.open(FeeTypeDialogComponent, {
       height: '300px',

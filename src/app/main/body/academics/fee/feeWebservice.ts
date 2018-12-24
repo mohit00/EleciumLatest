@@ -40,6 +40,12 @@ import { HttpClient } from '@angular/common/http';
      get gettokken(){
        return sessionStorage.getItem('token')
      }
+     setfeeType(data){
+      sessionStorage.setItem('feetype',JSON.stringify(data));
+    }
+    get getfeeTypesession(){
+      return sessionStorage.getItem('token')
+    }
    alertDialog(message,state){
 
     let dialogRef = this.dialog.open(AlertDialogComponent, {
