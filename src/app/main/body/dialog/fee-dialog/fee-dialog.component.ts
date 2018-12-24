@@ -38,7 +38,7 @@ createForm(){
   this.registerForm = this.formBuilder.group({
     actualFee           : ['', Validators.required],
    
-    feeDiscount           : ['', Validators.required],
+    feeDiscount           : ['', Validators.max(100)],
     hostelFee           : ['', Validators.required],
     totalfee           : ['', Validators.required],
     submitFee           : ['', Validators.required],
@@ -60,6 +60,22 @@ this.registerForm.valueChanges.subscribe(() => {
     this.onRegisterFormValuesChanged();
 });
 }  
+totaldeeselect(){
+  this.registerForm.controls['totalfee'].setValue((this.registerForm.value.hostelFee + this.registerForm.value.actualFee ) * (100- this.registerForm.value.feeDiscount )/100 )
+
+  
+}
+remainigFee(){
+  this.registerForm.controls['remianingFee'].setValue(this.registerForm.value.totalfee - this.registerForm.value.submitFee)
+  
+
+}
+Addfee(){
+  this.registerForm.value.instalmentType = 1;
+  this.feeWebService.Savefee(this.registerForm.value).subscribe(res=>{
+alert(JSON.stringify(res))
+  })
+}
 courseList:any
 courseSelect(){
   
@@ -115,6 +131,7 @@ depListes(){
 sessList:any; 
 sessionListes(){
   this.StudentService.getSession().subscribe(res=>{
+    alert(JSON.stringify(res))
      this.sessList = res.data;
   })
 }

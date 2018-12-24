@@ -19,7 +19,7 @@
 
         <mat-form-field class="example-full-width">
             <!-- <span matPrefix>+1 &nbsp;</span> -->
-            <input type="number" matInput placeholder="Actual Fee"  formControlName="actualFee">
+            <input type="number" matInput placeholder="Actual Fee"  formControlName="actualFee" (blur) ="totaldeeselect();">
             <mat-icon matSuffix>attach_money</mat-icon>
           </mat-form-field>
  </div>
@@ -27,7 +27,7 @@
 
         <mat-form-field class="example-full-width">
             <!-- <span matPrefix>+1 &nbsp;</span> -->
-            <input type="number" matInput placeholder="Hostel Fee" formControlName="hostelFee" >
+            <input type="number" matInput placeholder="Hostel Fee" formControlName="hostelFee" (blur) ="totaldeeselect();" >
             <mat-icon matSuffix>attach_money</mat-icon>
           </mat-form-field>
  </div>
@@ -35,7 +35,7 @@
 
         <mat-form-field class="example-full-width">
             <!-- <span matPrefix>+1 &nbsp;</span> -->
-            <input type="number" matInput placeholder="Fee Discount" formControlName="feeDiscount" >
+            <input type="number" matInput placeholder="Fee Discount" formControlName="feeDiscount" max ="100" min ="0" (blur) ="totaldeeselect();">
             <mat-icon matSuffix>%  &nbsp;</mat-icon>
           </mat-form-field>
  </div>
@@ -44,7 +44,7 @@
 
         <mat-form-field class="example-full-width">
             <!-- <span matPrefix>+1 &nbsp;</span> -->
-            <input type="number" matInput placeholder="Total Fee" formControlName="totalfee">
+            <input type="number" matInput placeholder="Total Fee" formControlName="totalfee" [disabled]="true"  >
             <mat-icon matSuffix>attach_money</mat-icon>
           </mat-form-field>
  </div>
@@ -52,7 +52,7 @@
 
         <mat-form-field class="example-full-width">
             <!-- <span matPrefix>+1 &nbsp;</span> -->
-            <input type="number" matInput placeholder="Submitted Fee" formControlName="submitFee">
+            <input type="number" matInput placeholder="Submitted Fee" formControlName="submitFee"  (blur) ="remainigFee();">
             <mat-icon matSuffix>attach_money</mat-icon>
           </mat-form-field>
  </div>
@@ -60,7 +60,7 @@
 
         <mat-form-field class="example-full-width">
             <!-- <span matPrefix>+1 &nbsp;</span> -->
-            <input type="number" matInput placeholder="Remianing Fee" formControlName="remianingFee">
+            <input type="number" matInput placeholder="Remianing Fee" formControlName="remianingFee" >
             <mat-icon matSuffix>attach_money</mat-icon>
           </mat-form-field>
  </div>
@@ -153,7 +153,7 @@
 <div mact-dialog-actions style ="float: right;padding:10px
 "  > 
   
-        <button mat-raised-button color="primary" (click) ="Addmember()" >Add</button>
+        <button mat-raised-button color="primary" (click) ="Addfee()" >Add</button>
  
  <button mat-raised-button color="primary" (click) ="onNoClick()" >Close</button>
 

@@ -64,6 +64,7 @@ import { HttpClient } from '@angular/common/http';
                    .map(res => < any > res)
                    .catch(this.handleError);
                   }
+
                   SavefeeType(data): Observable < any > {
                     data.tokenId=this.gettokken;
  
@@ -71,6 +72,30 @@ import { HttpClient } from '@angular/common/http';
                   .map(res => < any > res)
                   .catch(this.handleError);
                  }
+                 Savefee(data): Observable < any > {
+                  data.tokenId=this.gettokken;
+
+                    return this._http.post(this.BASE_URL + this.FEE_SAVE, data)
+                .map(res => < any > res)
+                .catch(this.handleError);
+               }
+               updatefee(data): Observable < any > {
+                data.tokenId=this.gettokken;
+
+                  return this._http.post(this.BASE_URL + this.FEE_UPDATE, data)
+              .map(res => < any > res)
+              .catch(this.handleError);
+             }
+               getfee(data): Observable < any > {
+                data.tokenId=this.gettokken;
+
+                  return this._http.post(this.BASE_URL + this.FEE_GET, data)
+              .map(res => < any > res)
+              .catch(this.handleError);
+             }
+                
+                 
+             
                  UpdatefeeType(data): Observable < any > {
                   data.tokenId=this.gettokken;
 
