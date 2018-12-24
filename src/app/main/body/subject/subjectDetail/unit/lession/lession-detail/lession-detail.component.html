@@ -42,8 +42,8 @@
           </div>
           </mat-card>
           <button mat-raised-button color="primary" style ="    margin-top: 16px;" (click) = "replyLession()">Reply</button>
-<span class ="update_pro"><p>Comment 23</p></span>
-<div class ="_comments">
+<span class ="update_pro"><p>Comment <span *ngIf ="lessiondetailcomment">{{lessiondetailcomment.length}}</span> </p></span>
+<div class ="_comments"  *ngFor ="let list of lessiondetailcomment">
     <hr>
     <h5 class="ng-binding">
 

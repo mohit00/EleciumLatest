@@ -23,6 +23,7 @@ unitdetail:any;
   constructor(private webservice:SubjectService , private fuseConfig:FuseConfigService ,private dialog:MatDialog) { 
     this.projectdetail = this.webservice.getProjectId;
      this.unitdetail = this.webservice.gettunitId;
+     this.lessiondetail = this.webservice.gettlessionId
  this.lessionDetails();
     this.fuseConfig.setSettings({
       layout: {
@@ -32,11 +33,11 @@ unitdetail:any;
       }
   }); 
   }
-
+  lessiondetailcomment:any;
   lessionDetails(){
     this.webservice.LessionDetail({}).subscribe(res=>{
       console.log(JSON.stringify(res))
-      this.lessiondetail = res.data
+      this.lessiondetailcomment = res.data.lessionStatus
     })
   }
   replyLession(){ let dialogRef = this.dialog.open(LessionReplyDialogComponent, {
