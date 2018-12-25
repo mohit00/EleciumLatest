@@ -33,7 +33,7 @@ import {
     DASHBOARD_STUDENT_COUNT_GET= this.Model.Sevice.DASHBOARD_STUDENT_COUNT_GET;
     WEB_API = this.Model.Sevice.WEB_API;
     LEAVE_GET= this.Model.Sevice.LEAVE_GET;
-
+    STUDENT_LEAVE_WEEKLY= this.Model.Sevice.STUDENT_LEAVE_WEEKLY
      constructor( private _http: HttpClient, private router: Router,public dialog: MatDialog
     ,private Model:WebserModel,private datePipe: DatePipe ) {
      }
@@ -86,7 +86,14 @@ import {
     .catch(this.handleError);
     
        }  
-    
+       getStudentWeekly(): Observable < any >{
+        let data = {tokenId : this.gettokken};
+         return this._http.post(this.BASE_URL + this.STUDENT_LEAVE_WEEKLY, data)
+        .map(res => < any > res)
+        .catch(this.handleError);
+        
+           }  
+       
         //calendar Type function
    getCalenderType(): Observable < any >{
 let data = {tokenId : this.gettokken};

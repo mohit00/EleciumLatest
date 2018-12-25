@@ -57,9 +57,25 @@ leaveGet(){
                 this.leaveListcount  = this.teacherLeaveCount+this.studentLeaveCount+this.stafLeaveCount;
                     })
 }
+firstDayOfYear:any;
+today:any;
+pastDaysOfYear:any;
+weekdays:['Monday','Tudesday']
+ getNumberOfWeek() {
+    this.today = new Date();
+    this.firstDayOfYear = new Date(this.today.getFullYear(), 0, 1);
+    this.pastDaysOfYear = (this.today - this.firstDayOfYear) / 86400000;
+    return Math.ceil((this.pastDaysOfYear + this.firstDayOfYear.getDay() + 1) / 7);
+}
+studentWeeklyGet(){
+     alert(this.getNumberOfWeek())
+   this.WebService.getStudentWeekly().subscribe(res=>{
+       console.log(JSON.stringify(res))
+   })
+}
     constructor(private WebService:ProjectWebService, private projectsDashboardService: ProjectsDashboardService)
     { 
-      
+        this.studentWeeklyGet();
         this.WebService.getDashboard().subscribe(res=>{
             this.coursecount = JSON.parse(res.data);
             this.WebService.getDashboardStudent().subscribe(res1=>{

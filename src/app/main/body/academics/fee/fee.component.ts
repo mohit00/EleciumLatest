@@ -34,9 +34,15 @@ dialogRef.afterClosed().subscribe(result => {
  });
 
 }
-  constructor(private translationLoader: FuseTranslationLoaderService,    
+registerForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder,private translationLoader: FuseTranslationLoaderService,    
       private fuseConfig: FuseConfigService,private web:feeWebService,private dialog:MatDialog) {
-    this.fuseConfig.setSettings({
+
+        this.registerForm = this.formBuilder.group({
+          feetypeId  : [''],
+        })
+        this.fuseConfig.setSettings({
       layout: {
           navigation: 'top',
       toolbar   : 'above',
@@ -44,8 +50,15 @@ dialogRef.afterClosed().subscribe(result => {
       }
   });
    }
-
+getFee(){
+  
+   this.web.getfee(this.registerForm.value).subscribe(res=>{
+console.log(JSON.stringify(res))
+  })
+}
   ngOnInit() {
+    this.registerForm.controls['feetypeId'].setValue(this.web.getfeeTypesession.instalmentTypeId);
+    this.getFee();
   }
 
 }

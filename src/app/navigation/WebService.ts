@@ -148,6 +148,7 @@
                 LEAVE_ADD:'leave/add',
                 LEAVE_UPDATE:'leave/update',
                 LEAVE_APPROVE:'leave/approve',
+                STUDENT_LEAVE_WEEKLY:'dashBoard/student/present',
                 WEB_API : 'https://api.darksky.net/forecast/93c441cc4fd3941e49eef5b982f53827/',
             }
         }

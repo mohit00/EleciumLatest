@@ -72,9 +72,9 @@ remainigFee(){
 }
 Addfee(){
   this.registerForm.value.instalmentType = 1;
+  
   this.feeWebService.Savefee(this.registerForm.value).subscribe(res=>{
-alert(JSON.stringify(res))
-  })
+this.feeWebService.alertDialog(res.message,'Academics/fee')  })
 }
 courseList:any
 courseSelect(){

@@ -30,8 +30,7 @@ import { HttpClient } from '@angular/common/http';
     FEE_SAVE = this.Model.Sevice.FEE_SAVE;
     FEE_GET = this.Model.Sevice.FEE_GET;
     FEE_UPDATE = this.Model.Sevice.FEE_UPDATE;
-
-     constructor( private _http: HttpClient, private router: Router,public dialog: MatDialog
+      constructor( private _http: HttpClient, private router: Router,public dialog: MatDialog
     ,private Model:WebserModel,private datePipe: DatePipe ) {
      }
      setTokken(token){
@@ -40,11 +39,14 @@ import { HttpClient } from '@angular/common/http';
      get gettokken(){
        return sessionStorage.getItem('token')
      }
+     get getuserId(){
+      return sessionStorage.getItem('UserId')
+    }
      setfeeType(data){
       sessionStorage.setItem('feetype',JSON.stringify(data));
     }
     get getfeeTypesession(){
-      return sessionStorage.getItem('token')
+      return JSON.parse(sessionStorage.getItem('feetype'))
     }
    alertDialog(message,state){
 
@@ -74,7 +76,9 @@ import { HttpClient } from '@angular/common/http';
                  }
                  Savefee(data): Observable < any > {
                   data.tokenId=this.gettokken;
-
+                
+                  data.submittedById = this.getuserId
+                  console.log(JSON.stringify(data))
                     return this._http.post(this.BASE_URL + this.FEE_SAVE, data)
                 .map(res => < any > res)
                 .catch(this.handleError);
