@@ -54,8 +54,10 @@ export class ProjectsDashboardService implements Resolve<any>
         return new Promise((resolve, reject) => {
             this.http.get('api/projects-dashboard-widgets')
                 .subscribe((response: any) => {
+
                     this.widgets = response;
-                     resolve(response);
+                    console.log(JSON.stringify(this.widgets))
+                    resolve(response);
                 }, reject);
         });
     }

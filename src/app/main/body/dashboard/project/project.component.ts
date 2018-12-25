@@ -20,6 +20,8 @@ export class FuseProjectComponent implements OnInit, OnDestroy
     selectedProject: any;
 
     widgets: any;
+    bardata: any = {};
+
     widget5: any = {};
     widget6: any = {};
     widget7: any = {};
@@ -65,13 +67,81 @@ weekdays:['Monday','Tudesday']
     this.today = new Date();
     this.firstDayOfYear = new Date(this.today.getFullYear(), 0, 1);
     this.pastDaysOfYear = (this.today - this.firstDayOfYear) / 86400000;
-    return Math.ceil((this.pastDaysOfYear + this.firstDayOfYear.getDay() + 1) / 7);
+    return Math.ceil((this.pastDaysOfYear + this.firstDayOfYear.getDay() + 1) / 7)-1;
 }
 studentWeeklyGet(){
-     alert(this.getNumberOfWeek())
+    this.bardata = {title: 'Student Leave',
+    "ranges":{
+     "TW":"This Week",
+     "LW":"Last Week",
+     "2W":"2 Weeks Ago"
+     },"mainChart":{
+         "2W":[],
+         "LW":[],
+         "TW":[]
+         }  
+
+}
    this.WebService.getStudentWeekly().subscribe(res=>{
        console.log(JSON.stringify(res))
-   })
+       for(var i =0 ;i<res.data.length;i++){
+ 
+            if(res.data[i].week == this.getNumberOfWeek()){
+             
+                this.bardata.mainChart.TW.push({
+                    
+                 "name":res.data[i].day,
+                 "series":[
+                     {
+                     "name":"Present",
+                     "value":res.data[i].present
+                     },
+                     {
+                     "name":"Leave",
+                     "value":res.data[i].absent
+                     }]
+             
+                })
+            }
+             if((res.data[i].week ) == this.getNumberOfWeek()-1){
+               
+                this.bardata.mainChart.LW.push({
+                    
+                    "name":res.data[i].day,
+                    "series":[
+                        {
+                        "name":"Present",
+                        "value":res.data[i].present
+                        },
+                        {
+                        "name":"Leave",
+                        "value":res.data[i].absent
+                        }]
+                
+                   })
+            }
+            if(res.data[i].week  == this.getNumberOfWeek()-2){
+                alert("2l")
+                this.bardata.mainChart['2W'].push({
+                    
+                    "name":res.data[i].day,
+                    "series":[
+                        {
+                        "name":"Present",
+                        "value":res.data[i].present
+                        },
+                        {
+                        "name":"Leave",
+                        "value":res.data[i].absent
+                        }]
+                
+                   })
+            }
+       }
+       console.log(JSON.stringify(this.bardata))
+        
+      
+})
 }
     constructor(private WebService:ProjectWebService, private projectsDashboardService: ProjectsDashboardService)
     { 
