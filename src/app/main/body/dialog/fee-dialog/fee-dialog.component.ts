@@ -61,6 +61,7 @@ this.registerForm.valueChanges.subscribe(() => {
 });
 }  
 totaldeeselect(){
+  
   this.registerForm.controls['totalfee'].setValue((this.registerForm.value.hostelFee + this.registerForm.value.actualFee ) * (100- this.registerForm.value.feeDiscount )/100 )
 
   
