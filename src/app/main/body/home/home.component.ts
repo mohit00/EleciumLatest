@@ -93,7 +93,7 @@ this.replycmtForm  = this.formBuilder.group({
       })
   }
   postGetList(){
-    this.Webservice.Postget(1,this.start +5).subscribe(res=>{ 
+    this.Webservice.Postget(0,this.start +5).subscribe(res=>{ 
       this.postArrayList = res.data.post;
 
      })
@@ -138,6 +138,7 @@ this.showUpdate = false;
     }
      this.Webservice.Postsend(data).subscribe(res=>{
        this.Webservice.alertDialog(res.message,'/home')
+       this.start = this.start +1;
        this.postGetList();
 
       })
